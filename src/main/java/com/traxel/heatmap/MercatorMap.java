@@ -7,6 +7,7 @@ import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import javax.imageio.ImageIO;
 
 /**
@@ -15,7 +16,7 @@ import javax.imageio.ImageIO;
  * instances without having to rebuild the MercatorProjection or to re-read the
  * map image file from disk.
  */
-public class MercatorMap {
+public class MercatorMap implements Serializable {
 
   public static BufferedImage clone(final BufferedImage original) {
     final ColorModel colorModel = original.getColorModel();
