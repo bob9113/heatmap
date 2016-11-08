@@ -82,7 +82,8 @@ public class MercatorHeatmap {
                                   centerLongitude - (gridSizeDegrees/2));
     final Xy br = projection.toXy(centerLatitude - (gridSizeDegrees/2),
                                   centerLongitude + (gridSizeDegrees/2));
-    System.out.println( "filling: " + tl.x + ", " + tl.y
+    System.out.println( "filling: { " + centerLatitude + ", " + centerLongitude + " } "
+                        + tl.x + ", " + tl.y
                         + " to " + br.x + ", " + br.y );
     final int[] polyX = new int[]{(int) tl.x, (int) tr.x, (int) br.x, (int) bl.x};
     final int[] polyY = new int[]{(int) tl.y, (int) tr.y, (int) br.y, (int) bl.y};
@@ -91,3 +92,9 @@ public class MercatorHeatmap {
     graphics.fillPolygon(polyX, polyY, 4);
   }
 }
+
+                        
+// image: 18 label: 2016-10-19 00:00:00.0
+// filling: { 41.5, -87.0625 } 745.65625, 185.5709895577893 to 768.8854166666642, 216.58640071832633
+// filling: { 41.5625, -87.25 } 675.96875, 154.52559846351505 to 699.1979166666642, 185.5709895577893
+// Writing: 1d-prop-16th-frames//0018.png

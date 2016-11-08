@@ -14,8 +14,6 @@ import java.util.Map;
 import com.traxel.heatmap.MercatorHeatmap;
 import com.traxel.heatmap.MercatorMap;
 
-import org.gdal.ogr.Layer;
-
 public class Heatmap {
   
   // -----------------------------------------------------
@@ -60,7 +58,7 @@ public class Heatmap {
 
       // this adjusts all the deviations, "- 2" is not magic, use
       // whatever makes sense for your dataset
-      final double normDeviations = deviations - 2;
+      final double normDeviations = deviations - 1;
       final int colorIndex = normDeviations < 0 ? -1
         : normDeviations >= MercatorHeatmap.COLORS.length ? MercatorHeatmap.COLORS.length - 1
         : (int) normDeviations;
