@@ -34,7 +34,18 @@ public class MercatorMap {
                      final double eastLongitude)
     throws IOException
   {
-    this.map = ImageIO.read(new File(pathToImageFile));
+    this(ImageIO.read(new File(pathToImageFile)),
+         northLatitude, westLongitude, southLatitude, eastLongitude);
+  }
+
+  public MercatorMap(final BufferedImage mapImage,
+                     final double northLatitude,
+                     final double westLongitude,
+                     final double southLatitude,
+                     final double eastLongitude)
+    throws IOException
+  {
+    this.map = mapImage;
     this.projection = new MercatorProjection(map.getWidth(), map.getHeight(),
                                              northLatitude, westLongitude,
                                              southLatitude, eastLongitude);
