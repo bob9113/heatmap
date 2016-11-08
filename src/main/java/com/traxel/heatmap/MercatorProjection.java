@@ -1,6 +1,8 @@
 package com.traxel.heatmap;
 
-public class MercatorProjection {
+import java.io.Serializable;
+
+public class MercatorProjection implements Serializable {
 
   // ----------------------------------------------------
   // Class Definition

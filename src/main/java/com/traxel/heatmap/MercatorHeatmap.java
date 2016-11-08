@@ -6,11 +6,12 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import javax.imageio.ImageIO;
 
 import static com.traxel.heatmap.MercatorProjection.Xy;
 
-public class MercatorHeatmap {
+public class MercatorHeatmap implements Serializable {
 
   // ----------------------------------------------------
   // Class Parameters

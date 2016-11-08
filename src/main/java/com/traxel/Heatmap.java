@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -14,13 +15,13 @@ import java.util.Map;
 import com.traxel.heatmap.MercatorHeatmap;
 import com.traxel.heatmap.MercatorMap;
 
-public class Heatmap {
+public class Heatmap implements Serializable {
   
   // -----------------------------------------------------
   // Class Definition
   // -----------------------------------------------------
   
-  private static final class Args {
+  private static final class Args implements Serializable {
     public final String dataPath;
     public final String mapPath;
     public final double nLat;
