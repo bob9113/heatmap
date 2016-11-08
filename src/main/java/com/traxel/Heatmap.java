@@ -14,6 +14,8 @@ import java.util.Map;
 import com.traxel.heatmap.MercatorHeatmap;
 import com.traxel.heatmap.MercatorMap;
 
+import org.gdal.ogr.Layer;
+
 public class Heatmap {
   
   // -----------------------------------------------------
@@ -28,7 +30,7 @@ public class Heatmap {
     public final double sLat;
     public final double eLong;
     public final String framePath;
-    public Args(final String[] args) {
+    public Args(final String[] args) throws IOException {
       dataPath = args[0];
       mapPath = args[1];
       nLat = Double.parseDouble(args[2]);
@@ -36,6 +38,7 @@ public class Heatmap {
       sLat = Double.parseDouble(args[4]);
       eLong = Double.parseDouble(args[5]);
       framePath = args[6];
+      new File(framePath).mkdirs();
     }
   }
 
@@ -58,10 +61,10 @@ public class Heatmap {
       // this adjusts all the deviations, "- 2" is not magic, use
       // whatever makes sense for your dataset
       final double normDeviations = deviations - 2;
-      final int colorIndex = normDeviations < 0 ? 0
+      final int colorIndex = normDeviations < 0 ? -1
         : normDeviations >= MercatorHeatmap.COLORS.length ? MercatorHeatmap.COLORS.length - 1
         : (int) normDeviations;
-      color = MercatorHeatmap.COLORS[ colorIndex ];
+      color = colorIndex == -1 ? null : MercatorHeatmap.COLORS[ colorIndex ];
     }
   }
 
@@ -202,7 +205,7 @@ public class Heatmap {
       }
       for (Dataset dataset : data) {
         if (dataset.color != null) {
-          heatmap.fillGrid(dataset.latitude, dataset.longitude, 0.5, dataset.color);
+          heatmap.fillGrid(dataset.latitude, dataset.longitude, dataset.width, dataset.color);
         }
       }
       System.out.println( "Writing: " + path );
